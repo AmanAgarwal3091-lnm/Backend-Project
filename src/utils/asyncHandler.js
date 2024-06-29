@@ -14,7 +14,7 @@ const asyncHandler = (fn) => async (err,req,res,next) => {
         await  fn(err,req,res,next)
     } catch(error){
         res.status(err.code || 500).json({
-            sucess: false,
+            success: false,
             message: err.message
         })
     }
