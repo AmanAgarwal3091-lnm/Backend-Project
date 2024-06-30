@@ -25,7 +25,7 @@ const registerUser= asyncHandler (async(req,res)=>{
      if([fullname, email, username, password].some((field)=>field?.trim()==="")){
         throw new ApiError(400,"All fileds are required")
      }
-     const existedUser =User.findOne({ // User database se directly connect kr sakta hai as ye mongoose se bana hai yaad hai User = mongoose.model islie Use use kr rhe 
+     const existedUser =await User.findOne({ // User database se directly connect kr sakta hai as ye mongoose se bana hai yaad hai User = mongoose.model islie Use use kr rhe 
         //aur findOne ek method hai jo batat ki user exist krta hai ya nhi 
         $or:[{username},{email}] //ye dollar sign use krke or parameter use krte hau taki check krle findOne me kya inme se koi present hai ya nhi , idhar hum dekh rhe ki same username or email exist nhi krna chahiye, aise object me hi pass krte
 
