@@ -138,6 +138,8 @@ return res
 })
 
 const logoutUser = asyncHandler(async(req,res)=>{
+
+    //logout usercontroll for this created auth.middleware.js a middleware that extract add an object user in req by decoding token and sending it to logout and then removing refresh token from our server and then clearing refresh token from client database
     await User.findByIdAndUpdate(
         req.user._id, // pehle to ye batao find kaise krna hai
         //fir batao update krna kya hai jike lie set operator use krte
