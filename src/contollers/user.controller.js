@@ -138,6 +138,32 @@ return res
 })
 
 const logoutUser = asyncHandler(async(req,res)=>{
+    await User.findByIdAndUpdate(
+        req.user._id, // pehle to ye batao find kaise krna hai
+        //fir batao update krna kya hai jike lie set operator use krte
+        {
+            $set:{
+                refreshToken: undefined
+            }
+        },{
+            new: true
+        }
+
+    )
+    const options= {
+        //ye dono httpOnly and secure ko true krne se cookie keval server se modifible hoti hai 
+        httpOnly: true,
+        secure: true
+    }
+    return res
+    .status(200)
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken",options)
+    .json(
+       new ApiResponse(200,{},"User logged Out") 
+    )
+
+
 
 })
 
