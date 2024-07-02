@@ -145,7 +145,7 @@ const logoutUser = asyncHandler(async(req,res)=>{
         //fir batao update krna kya hai jike lie set operator use krte
         {
             $set:{
-                refreshToken: undefined
+                refreshToken: undefined //database se refreshToken delete kia
             }
         },{
             new: true
@@ -157,6 +157,7 @@ const logoutUser = asyncHandler(async(req,res)=>{
         httpOnly: true,
         secure: true
     }
+    //cookie clear kia
     return res
     .status(200)
     .clearCookie("accessToken", options)
